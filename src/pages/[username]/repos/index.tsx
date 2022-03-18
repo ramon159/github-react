@@ -11,16 +11,18 @@ export default function Index() {
   const router = useRouter()
   const username = router.query.username as string
   useEffect(() => {
-    ;async () => {
-      try {
-        const reposResponse = await client.get<IUserRepos>(`/${username}/repos`)
-        ctx.setUserRepos(reposResponse.data)
-      } catch (err) {
-        console.log(err)
-      }
-    }
+    username &&
+      (async function getUserData() {
+        try {
+          const reposResponse = await client.get<IUserRepos>(
+            `/${username}/repos`
+          )
+          ctx.setUserRepos(reposResponse.data)
+        } catch (err) {
+          console.log(err)
+        }
+      })()
   }, [username])
-
   return (
     <Container>
       {ctx.userRepos && (
