@@ -14,6 +14,10 @@ export const HeaderSection = styled.header`
 `
 
 export const HeaderTitle = styled.h1`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
   margin: 0;
   padding: 15px 0;
   color: #e5e5e5;
@@ -64,7 +68,7 @@ export const HeaderSearchButton = styled.button`
   height: 30px;
   border-radius: 15px;
   border: none;
-  background: #ff7a00;
+  background: #0095ff;
   margin-left: 10px;
   display: flex;
   align-items: center;

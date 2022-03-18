@@ -1,10 +1,10 @@
 import IUserData from 'interfaces/github/IUserData'
 import { Container, ProfilePicture } from './styles'
-interface IUserPictureProps {
+interface UserPictureProps {
   url: IUserData['url']
 }
 
-const UserPicture = (props: IUserPictureProps) => (
+const UserPicture = (props: UserPictureProps) => (
   <Container>
     <ProfilePicture src={props.url} alt="perfil do usuario" />
   </Container>

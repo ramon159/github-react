@@ -5,9 +5,9 @@ import UserContainer from 'components/UserContainer'
 import UserDetails from 'components/UserDetails'
 import UserNumbers from 'components/UserNumbers'
 import UserPicture from 'components/UserPicture'
+import { context } from 'context'
 import { useRouter } from 'next/router'
 import React, { useContext } from 'react'
-import { context } from '../context'
 
 export default function Home() {
   const ctx = useContext(context)

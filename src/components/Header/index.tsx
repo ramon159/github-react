@@ -6,11 +6,12 @@ import { context } from 'context'
 import client from 'services/client'
 import IUserData from 'interfaces/github/IUserData'
 import { IUserRepos } from 'interfaces/github/IUserRepos'
+import { AiFillGithub } from 'react-icons/ai'
 
-interface IProps {
+interface HeaderProps {
   username: string
 }
-const Header = (props: IProps) => {
+const Header = (props: HeaderProps) => {
   const ctx = useContext(context)
   const [searchValue, setSearchValue] = useState('')
 
@@ -18,13 +19,13 @@ const Header = (props: IProps) => {
     props.username &&
       (async function getUserData() {
         try {
-          const userResponse = await client.get<IUserData>(`/${props.username}`)
-          const reposResponse = await client.get<IUserRepos>(
-            `/${props.username}/repos`
-          )
-          const starredResponse = await client.get<IUserRepos>(
-            `/${props.username}/starred`
-          )
+          const [userResponse, reposResponse, starredResponse] =
+            await Promise.all([
+              client.get<IUserData>(`/${props.username}`),
+              client.get<IUserRepos>(`/${props.username}/repos`),
+              client.get<IUserRepos>(`/${props.username}/starred`)
+            ])
+
           ctx.setUserData(userResponse.data)
           ctx.setUserRepos(reposResponse.data)
           ctx.setuserReposStarred(starredResponse.data)
@@ -36,7 +37,10 @@ const Header = (props: IProps) => {
 
   return (
     <S.HeaderSection>
-      <S.HeaderTitle>Github Profile</S.HeaderTitle>
+      <S.HeaderTitle>
+        <AiFillGithub />
+        Github Profile
+      </S.HeaderTitle>
       <S.HeaderInputContainer>
         <S.HeaderInput
           type="text"
@@ -44,7 +48,7 @@ const Header = (props: IProps) => {
           value={searchValue}
           onChange={(e) => setSearchValue(e.target.value)}
         />
-        <Link href={`/?username=${searchValue}`} passHref>
+        <Link href={`/${searchValue}`} passHref>
           <S.HeaderSearchButton>
             <FiSearch size={15} />
           </S.HeaderSearchButton>

@@ -2,19 +2,27 @@ import { IRepo } from 'interfaces/github/IUserRepos'
 import Link from 'next/link'
 import * as S from './styles'
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const ReposContainer = (props: any) => {
+interface ReposContainerProps {
+  title: string
+  repos: IRepo[]
+}
+
+const ReposContainer = (props: ReposContainerProps) => {
   return (
     <S.Section>
-      <S.Title>Repositórios de {props.name?.split(' ')[0]}</S.Title>
+      <S.Title>{props.title}</S.Title>
+      <S.Divider />
       <S.ListOfReposContainer>
         {(props?.repos).map((repo: IRepo) => (
-          // <Link href={repo?.html_url} key={repo?.id}>
-          <S.Repo key={repo?.id}>
-            <h2>{repo?.name}</h2>
-            <p>{repo?.description}</p>
-          </S.Repo>
-          // </Link>
+          <Link href={repo?.html_url} key={repo?.id}>
+            <S.Repo>
+              <h2>{repo?.name}</h2>
+              <small>{repo?.owner.login}</small>
+              <p>
+                Last commit: {new Date(repo?.pushed_at).toLocaleDateString()}
+              </p>
+            </S.Repo>
+          </Link>
         ))}
       </S.ListOfReposContainer>
     </S.Section>

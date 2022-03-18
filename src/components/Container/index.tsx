@@ -1,9 +1,9 @@
 import { Container } from './styles'
 
-interface IProps {
+interface MainContainerProps {
   children?: React.ReactNode
 }
-const MainContainer = ({ children }: IProps) => (
+const MainContainer = ({ children }: MainContainerProps) => (
   <Container>{children}</Container>
 )
 

@@ -1,23 +1,23 @@
 import { ContextProvider } from 'context'
+import { SessionProvider } from 'next-auth/react'
 import type { AppProps } from 'next/app'
 import Head from 'next/head'
 import { GlobalStyles } from 'styles/global'
 
-function App({ Component, pageProps }: AppProps) {
+function App({ Component, pageProps: { session, ...pageProps } }: AppProps) {
   return (
     <>
       <Head>
-        <title>Nephxlin boilerplate 2021</title>
+        <title>Github react</title>
         <link rel="manifest" href="/manifest.json" />
-        <meta
-          name="description"
-          content="Nephxlin new modern boilerplate - 2021"
-        />
+        <meta name="description" content="Github react - 2022" />
       </Head>
       <GlobalStyles />
-      <ContextProvider>
-        <Component {...pageProps} />
-      </ContextProvider>
+      <SessionProvider session={session}>
+        <ContextProvider>
+          <Component {...pageProps} />
+        </ContextProvider>
+      </SessionProvider>
     </>
   )
 }

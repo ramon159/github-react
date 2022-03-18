@@ -9,4 +9,7 @@ export const Section = styled.section`
   flex-wrap: wrap;
   background: rgba(255, 255, 255, 0.95);
   border-radius: 10px;
+  @media (max-width: 430px) {
+    width: 300px;
+  }
 `

@@ -1,12 +1,12 @@
 import * as S from './styles'
 
-interface IUserDetailsProps {
+interface UserDetailsProps {
   name: string
   username: string
   bio: string
 }
 
-const UserDetails = (props: IUserDetailsProps) => {
+const UserDetails = (props: UserDetailsProps) => {
   return (
     <S.Container>
       <S.Name>{props?.name}</S.Name>
