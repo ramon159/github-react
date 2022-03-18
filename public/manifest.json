@@ -1,0 +1,10 @@
+{
+    "name": "Nephxlin - Boilerplate",
+    "short_name": "Nephxlin",
+    "icons": [],
+    "background_color": "#06092B",
+    "description": "Boilerlate utilizando Typescript, React, NextJS e Styled Components!",
+    "display": "fullscreen",
+    "start_url": "/",
+    "theme_color": "#06092B"
+  }
